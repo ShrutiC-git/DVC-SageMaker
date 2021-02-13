@@ -1,0 +1,39 @@
+get_data:
+  cmd: python get_data.py
+  deps:
+  - path: get_data.py
+    md5: 457abe701a4a618aad51171a4962e096
+    size: 252
+  outs:
+  - path: Iris.data
+    md5: 717820ef0af287ff346c5cabfb4c612c
+    size: 5258
+process_data:
+  cmd: python process_data.py
+  deps:
+  - path: Iris.data
+    md5: 717820ef0af287ff346c5cabfb4c612c
+    size: 5258
+  - path: process_data.py
+    md5: 3722a6c3352494b3b5c05938056f52a1
+    size: 294
+  outs:
+  - path: data_processed.csv
+    md5: 8e1e766d4f96a4098d05af235b8b3c9b
+    size: 2605
+train:
+  cmd: python train.py
+  deps:
+  - path: data_processed.csv
+    md5: 8e1e766d4f96a4098d05af235b8b3c9b
+    size: 2605
+  - path: labels.csv
+    md5: 540a65ad41e06580c87182d237df7e96
+    size: 2309
+  - path: train.py
+    md5: d3d89597bf434606aefebf4e25283e3a
+    size: 726
+  outs:
+  - path: metrics.json
+    md5: 987c8a35a630044b24b9ad667403631f
+    size: 32
