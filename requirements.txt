@@ -1,5 +1,4 @@
 wget
 pandas
 numpy
-json
 sklearn
