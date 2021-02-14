@@ -37,7 +37,12 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
-    - name: EC2 wit docker
+    - name: Install SSH Keys
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{secrets.AWS_ACCESS_KEY_ID}}
+        known_hosts: ''
+    - name: EC2 with docker
       run: |
         ssh -i ${{secrets.AWS_SSH_KEY}} ec2-user@ec2-65-0-104-206.ap-south-1.compute.amazonaws.com
         sudo yum install docker
