@@ -17,6 +17,9 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         repo_token: ${{secrets.GITHUB_TOKEN}}
       run: |
+        sudo yum update -y
+        sudo yum install docker
+        sudo service docker start
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
       run: |
