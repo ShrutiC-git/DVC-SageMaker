@@ -43,7 +43,7 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{secrets.AWS_ACCESS_KEY_ID}}
-        known_hosts: ''
+        known_hosts: ${{secrets.AWS_KNOWN_HOSTS}}
     - name: EC2 with docker
       run: |
         ssh -i ${{secrets.AWS_SSH_KEY}} ec2-user@ec2-65-0-104-206.ap-south-1.compute.amazonaws.com
