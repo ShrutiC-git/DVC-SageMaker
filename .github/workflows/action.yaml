@@ -19,10 +19,10 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
       run: |
-        docker build -t k18sc01/ml:1.0.0 .
+        docker build -t k18sc01/ml:1.0.1 .
     - name: push_docker
       run: |
-        docker push k18sc01/ml:1.0.0
+        docker push k18sc01/ml:1.0.1
 
   deploy:
     needs: build
@@ -42,5 +42,5 @@ jobs:
         sudo yum install docker
         sudo service docker start
         docker info
-        docker run -d -p 80:8080 k18sc01/ml:1.0.0
+        docker run -d -p 80:8080 k18sc01/ml:1.0.1
         curl -X POST public-dns-name:80/predict -H 'Content-Type: application/json' -d '[5.9,3.0,5.1,1.8]'
