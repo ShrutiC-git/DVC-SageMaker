@@ -8,7 +8,7 @@ on: [push]
 jobs:
 
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: login_docker
@@ -17,11 +17,6 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         repo_token: ${{secrets.GITHUB_TOKEN}}
       run: |
-        sudo apt-get update
-        sudo apt install docker.io -y
-        sudo snap install docker
-        newgrp docker
-        docker --version
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
       run: |
