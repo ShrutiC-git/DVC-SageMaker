@@ -20,6 +20,7 @@ jobs:
         sudo apt-get update
         sudo apt install docker.io -y
         sudo snap install docker
+        newgrp docker
         docker --version
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
