@@ -23,3 +23,23 @@ jobs:
     - name: push_docker
       run: |
         docker push k18sc01/ml:1.0.0
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Configure AWS Creds
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+      run: |
+        ssh -i ${{secrets.AWS_SSH_KEY}} ec2-user@ec2-65-0-104-206.ap-south-1.compute.amazonaws.com
+        sudo yum install docker
+        sudo service docker start
+        docker info
+        docker run -d -p 80:8080 k18sc01/ml:1.0.0
+        curl -X POST public-dns-name:80/predict -H 'Content-Type: application/json' -d '[5.9,3.0,5.1,1.8]'
