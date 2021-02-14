@@ -1,5 +1,5 @@
 FROM python:3.6-slim
-WORKDIR = deploy/
+WORKDIR = /
 COPY load_model.py .
 COPY model.pkl .
 COPY . .
