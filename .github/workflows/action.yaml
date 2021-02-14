@@ -17,6 +17,7 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         repo_token: ${{secrets.GITHUB_TOKEN}}
       run: |
+        ip a
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
       run: |
