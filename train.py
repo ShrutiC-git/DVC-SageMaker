@@ -30,5 +30,4 @@ with open("metrics.json", 'w') as outfile:
 pickle.dump(clf, open("model.pkl", 'wb'))
 
 loaded_model = pickle.load(open('model.pkl', 'rb'))
-data = np.array(data)[np.newaxis, :]
-result = loaded_model.predict(data)
+
