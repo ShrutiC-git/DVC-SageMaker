@@ -2,3 +2,4 @@ wget
 pandas
 numpy
 sklearn
+pickle-mixin

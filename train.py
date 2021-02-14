@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 import json
+import pickle
 
 X = pd.read_csv("data_processed.csv")
 y = pd.read_csv("labels.csv")
@@ -25,3 +26,9 @@ with open("metrics.json", 'w') as outfile:
     json.dump({
         "accuracy": acc
     }, outfile)
+
+pickle.dump(clf, open("model.pkl", 'wb'))
+
+loaded_model = pickle.load(open('model.pkl', 'rb'))
+data = np.array(data)[np.newaxis, :]
+result = loaded_model.predict(data)
