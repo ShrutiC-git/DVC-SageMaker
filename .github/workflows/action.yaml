@@ -24,6 +24,7 @@ jobs:
     - name: push_docker
       run: |
         docker push k18sc01/ml:1.0.1
+        ssh-keyscan -t rsa server_ip
 
   deploy:
     needs: build
