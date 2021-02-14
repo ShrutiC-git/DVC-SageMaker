@@ -18,7 +18,7 @@ jobs:
         repo_token: ${{secrets.GITHUB_TOKEN}}
       run: |
         sudo apt-get update
-        sudo apt-get install docker
+        sudo apt-get install docker -y
         sudo service docker start
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
