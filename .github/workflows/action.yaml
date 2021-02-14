@@ -19,7 +19,7 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: build_docker
       run: |
-        docker build -t shruti/ml:1.0.0
+        docker build -t shruti/ml:1.0.0 .
     - name: push_docker
       run: |
         docker push shruti/ml:1.0.0
