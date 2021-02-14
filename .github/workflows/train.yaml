@@ -22,7 +22,7 @@ jobs:
         git fetch --prune
         echo "### Comparison with Master" >> report.md
         dvc metrics diff --show-md main > report.md
-
+        cml-send-comment report.md
 
         # Add figure to the report
         #echo "## Validating results by region" > report.md
